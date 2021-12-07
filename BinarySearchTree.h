@@ -137,13 +137,13 @@ public:
 				//only left child exists
 				else if (i*2+1 < this->capacity && this->arr[i * 2 + 1].isOccupied == true)
 				{
-					percholateUp(i * 2 + 1, i); 
+					percolateUp(i * 2 + 1, i); 
 				}
 
 				//only right child exists
 				else if (i * 2 + 2 < this->capacity && this->arr[i*2+2].isOccupied == true)
 				{
-					percholateUp(i * 2 + 2, i);
+					percolateUp(i * 2 + 2, i);
 				}
 
 				else //both children exist, find an inorder sucessor from right subtree
@@ -153,7 +153,7 @@ public:
 						successor = successor * 2 + 1;
 					this->arr[i] = this->arr[successor];
 					this->arr[successor].isOccupied = false;
-					percholateUp(successor * 2 + 2, successor);
+					percolateUp(successor * 2 + 2, successor);
 				}
 				this->totalElements--;
 			}
@@ -161,7 +161,7 @@ public:
 		}//end of for loop
 	}//end of delete_ function
 
-	void percholateUp(int originalIndex, int newIndex)
+	void percolateUp(int originalIndex, int newIndex)
 	{
 		if (originalIndex>=this->capacity || this->arr[originalIndex].isOccupied == false)
 			return;
@@ -169,8 +169,8 @@ public:
 		this->arr[newIndex] = this->arr[originalIndex];
 		this->arr[originalIndex].isOccupied = false;
 
-		percholateUp(originalIndex * 2 + 1, newIndex * 2 + 1);
-		percholateUp(originalIndex * 2 + 2, newIndex * 2 + 2);
+		percolateUp(originalIndex * 2 + 1, newIndex * 2 + 1);
+		percolateUp(originalIndex * 2 + 2, newIndex * 2 + 2);
 	}
 
 	void inOrderPrintKeys() const
