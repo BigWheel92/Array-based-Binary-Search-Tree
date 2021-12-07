@@ -135,13 +135,13 @@ public:
 					this->arr[i].isOccupied = false;
 				}
 				//only left child exists
-				else if (i*2+1 < this->capacity && this->arr[i * 2 + 1].isOccupied == false)
+				else if (i*2+1 < this->capacity && this->arr[i * 2 + 1].isOccupied == true)
 				{
 					percholateUp(i * 2 + 1, i); 
 				}
 
 				//only right child exists
-				else if (i * 2 + 2 < this->capacity && this->arr[i*2+2].isOccupied==false)
+				else if (i * 2 + 2 < this->capacity && this->arr[i*2+2].isOccupied == true)
 				{
 					percholateUp(i * 2 + 2, i);
 				}
