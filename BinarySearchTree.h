@@ -23,7 +23,7 @@ template <typename k, typename v>
 class BinarySearchTree
 {
 private:
-	TreeItem<k,v>* arr;
+	TreeItem<k, v>* arr;
 	int capacity;
 	int totalElements;
 
@@ -34,7 +34,7 @@ private:
 		else
 		{
 			inOrderPrintKeys(i * 2 + 1);
-			cout << this->arr[i].key<<endl;
+			cout << this->arr[i].key << endl;
 			inOrderPrintKeys(i * 2 + 2);
 		}
 	}
@@ -45,18 +45,18 @@ private:
 		this->arr = new TreeItem<k, v>[this->capacity * 2];
 		for (int i = 0; i < this->capacity; i++)
 		{
-			if (oldArr[i].isOccupied==true)
-			this->arr[i] = oldArr[i];
+			if (oldArr[i].isOccupied == true)
+				this->arr[i] = oldArr[i];
 		}
 
-		delete []oldArr;
+		delete[]oldArr;
 		this->capacity *= 2;
 	}
 public:
-	BinarySearchTree(int _capacity=1)
+	BinarySearchTree(int _capacity = 1)
 	{
 		assert(_capacity > 0);
-		this->arr = new TreeItem<k,v>[_capacity];
+		this->arr = new TreeItem<k, v>[_capacity];
 		this->capacity = _capacity;
 		this->totalElements = 0;
 	}
@@ -81,7 +81,7 @@ public:
 		}
 	}
 
-	
+
 	void insert(k _key, v _value)
 	{
 		for (int i = 0; i < this->capacity;)
@@ -103,7 +103,7 @@ public:
 				i = i * 2 + 2;
 			}
 			else return; //key already exists
-			
+
 			if (i >= this->capacity)
 			{
 				this->doubleCapacity();
@@ -130,18 +130,18 @@ public:
 			}
 			else
 			{    //leaf case
-				if ( (i*2+1 >= this->capacity ||  this->arr[i * 2 + 1].isOccupied == false) && (i*2+2 >=this->capacity || this->arr[i * 2 + 2].isOccupied == false))
+				if ((i * 2 + 1 >= this->capacity || this->arr[i * 2 + 1].isOccupied == false) && (i * 2 + 2 >= this->capacity || this->arr[i * 2 + 2].isOccupied == false))
 				{
 					this->arr[i].isOccupied = false;
 				}
 				//only left child exists
-				else if (i*2+1 < this->capacity && this->arr[i * 2 + 1].isOccupied == true)
+				else if (i * 2 + 1 < this->capacity && this->arr[i * 2 + 1].isOccupied == true)
 				{
-					percolateUp(i * 2 + 1, i); 
+					percolateUp(i * 2 + 1, i);
 				}
 
 				//only right child exists
-				else if (i * 2 + 2 < this->capacity && this->arr[i*2+2].isOccupied == true)
+				else if (i * 2 + 2 < this->capacity && this->arr[i * 2 + 2].isOccupied == true)
 				{
 					percolateUp(i * 2 + 2, i);
 				}
@@ -163,7 +163,7 @@ public:
 
 	void percolateUp(int originalIndex, int newIndex)
 	{
-		if (originalIndex>=this->capacity || this->arr[originalIndex].isOccupied == false)
+		if (originalIndex >= this->capacity || this->arr[originalIndex].isOccupied == false)
 			return;
 
 		this->arr[newIndex] = this->arr[originalIndex];
@@ -180,7 +180,7 @@ public:
 
 	~BinarySearchTree()
 	{
-		delete []this->arr;
+		delete[]this->arr;
 	}
 
 };
